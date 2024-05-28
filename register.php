@@ -43,6 +43,10 @@
         if (strlen($password) > 255) {
             return "Password terlalu panjang";
         }
+
+        if (strlen($password) < 8) {
+            return "Password minimal 8 karakter";
+        }
     
         try {
             $password = removeWhiteSpace($password);
