@@ -1,6 +1,4 @@
-# Project Name
-
-Perpustakaan ts0ra
+# Perpustakaan ts0ra
 
 ## Description
 
