@@ -8,12 +8,12 @@ This project was made for educational propose only, keep in mind there is a lot 
 
 ## Todo
 
-[x] create register page
-[x] create login page
-[x] working login and register page
-[ ] secure login and register page
-[ ] create main page
-[ ] show borrowed books
-[ ] add borrow books method
-[ ] add return books method
-[ ] styling entire web
+- [x] create register page
+- [x] create login page
+- [x] working login and register page
+- [ ] secure login and register page
+- [ ] create main page
+- [ ] show borrowed books
+- [ ] add borrow books method
+- [ ] add return books method
+- [ ] styling entire web
