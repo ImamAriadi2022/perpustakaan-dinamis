@@ -1,7 +1,13 @@
 <?php
     include "services/database.php";
+    include "services/function.php";
+    session_start();
 
     $login_result = "";
+
+    if (isset($_SESSION['is_login'])) {
+        header("Location: dashboard.php");
+    }
 
     if (isset($_POST['submit'])) 
     {
@@ -9,6 +15,8 @@
         $password = $_POST['password'];
 
         $login_result = validateLogin($username, $password, $db);
+
+        $db->close();
     }
 
     function validateLogin($username, $password, $db) {
@@ -43,16 +51,18 @@
             $user = $find_result->fetch_assoc();
             
             if (password_verify($password, $user['password'])) {
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['is_login'] = true;
+                header("Location: dashboard.php");
                 return "Login berhasil";
+            } else {
+                return "Username atau password salah";
             }
 
         } catch (Exception $e) {
             return "Gagal login karena: " . $e->getMessage();
         }
-    }
-
-    function isEmpty($value) {
-        return empty($value);
     }
 ?>
 
@@ -65,13 +75,13 @@
 </head>
 <body>
     <div>
-        <h1>Selamat datang di Perpustakaan ts0ra</h1>
+        <h1>Website Perpustakaan</h1>
 
         <p>Sign in</p>
 
         <form action="index.php" method="POST">
-            <input type="text" name="username" placeholder="username"><br>
-            <input type="password" name="password" placeholder="password"><br>
+            <input type="text" name="username" placeholder="username" required><br>
+            <input type="password" name="password" placeholder="password" required><br>
             <button type="submit" name="submit">Submit</button>
         </form>
 

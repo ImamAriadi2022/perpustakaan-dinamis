@@ -1,8 +1,14 @@
 <?php
     include "services/database.php";
+    include "services/function.php";
+    session_start();
 
     $regist_result = "";
     $regex_pass = '/[\s\W_]/';
+
+    if (isset($_SESSION['is_login'])) {
+        header("Location: dashboard.php");
+    }
 
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
@@ -13,6 +19,7 @@
         $check_query = "SELECT username FROM users WHERE username = '$username'";
 
         $regist_result = validateRegistration($username, $password, $db, $regis_query, $check_query);
+        $db->close();
     }
 
     function validateRegistration($username, $password, $db, $regis_query, $check_query) {
@@ -56,18 +63,6 @@
             return "Gagal mendaftar karena: " . $e->getMessage();
         }
     }
-    
-    function isEmpty($value) {
-        return empty($value);
-    }
-    
-    function hasInvalidCharacters($username) {
-        return preg_match('/[\s\W_]/', $username);
-    }
-
-    function removeWhiteSpace($string) {
-        return preg_replace('/\s+/', '', $string);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -79,13 +74,13 @@
 </head>
 <body>
     <div>
-        <h1>Selamat datang di Perpustakaan ts0ra</h1>
+        <h1>Website Perpustakaan</h1>
 
         <p>Sign up</p>
         
         <form action="register.php" method="POST">
-            <input type="text" name="username" placeholder="username"><br>
-            <input type="password" name="password" placeholder="password"><br>
+            <input type="text" name="username" placeholder="username" required><br>
+            <input type="password" name="password" placeholder="password" required><br>
             <button type="submit" name="submit">Submit</button>
         </form>
 
