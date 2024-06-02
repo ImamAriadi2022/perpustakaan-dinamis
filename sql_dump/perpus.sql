@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 01 Jun 2024 pada 10.21
+-- Waktu pembuatan: 01 Jun 2024 pada 10.28
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `perpustakaan_ts0ra`
 --
+CREATE DATABASE IF NOT EXISTS `perpustakaan_ts0ra` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `perpustakaan_ts0ra`;
 
 -- --------------------------------------------------------
 
