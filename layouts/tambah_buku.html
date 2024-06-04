@@ -1,30 +1,46 @@
-<h2>Form Penambahan Buku ke dalam Database</h2>
-<form action="dashboard.php" method="POST">
-    <div class="form-group">
-        <label for="judul">Judul Buku</label>
-        <input type="text" class="form-control" id="judul" name="title" required>
-    </div>
-    <div class="form-group">
-        <label for="penulis">Penulis</label>
-        <input type="text" class="form-control" id="penulis" name="author" required>
-    </div>
-    <div class="form-group">
-        <label for="penerbit">Penerbit</label>
-        <input type="text" class="form-control" id="penerbit" name="publisher" required>
-    </div>
-    <div class="form-group">
-        <label for="tahun">Tahun Terbit</label>
-        <input type="number" class="form-control" id="tahun" name="publication_date" required>
-    </div>
-    <div class="form-group">
-        <label for="kategori">Kategori</label>
-        <select class="form-control" id="kategori" name="category" required>
-            <option value="Novel">Novel</option>
-            <option value="Comic">Komik</option>
-            <option value="Biography">Biografi</option>
-            <option value="Encyclopedia">Ensiklopedia</option>
-            <option value="Other">Lainnya</option>
-        </select>
-    </div>
-    <button type="submit" name="add_book">Tambah Buku</button>
-</form>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="assest/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <section>
+            <div class="container">
+                <h2>Form Penambahan Buku ke dalam Database</h2>
+                <form action="dashboard.php" method="POST">
+                    <div class="form-group">
+                        <label for="judul">Judul Buku</label>
+                        <input type="text" class="form-control" id="judul" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="penulis">Penulis</label>
+                        <input type="text" class="form-control" id="penulis" name="author" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="penerbit">Penerbit</label>
+                        <input type="text" class="form-control" id="penerbit" name="publisher" required>
+        </div>
+        <div class="form-group">
+            <label for="tahun">Tahun Terbit</label>
+            <input type="number" class="form-control" id="tahun" name="publication_date" required>
+        </div>
+        <div class="form-group">
+            <label for="kategori">Kategori</label>
+            <select class="form-control" id="kategori" name="category" required>
+                <option value="Novel">Novel</option>
+                <option value="Comic">Komik</option>
+                <option value="Biography">Biografi</option>
+                <option value="Encyclopedia">Ensiklopedia</option>
+                <option value="Other">Lainnya</option>
+            </select>
+        </div>
+        <button type="submit" name="add_book">Tambah Buku</button>
+    </form>
+</div>
+</section>
+</body>
+</html>

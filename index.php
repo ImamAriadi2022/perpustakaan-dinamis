@@ -1,6 +1,7 @@
 <?php
     include "services/database.php";
     include "services/function.php";
+    include "function/header.php";
     session_start();
 
     $login_result = "";
@@ -69,25 +70,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="assest/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpustakaan ts0ra</title>
 </head>
 <body>
-    <div>
-        <h1>Website Perpustakaan</h1>
+    <?=Navbar('')?>
+    <section>
+        <div class="container-head">
+            <div class=container>
+                <h1>Website Perpustakaan</h1>
+                
+                <p>Sign in</p>
+                
+                <form action="index.php" method="POST">
+                    <input type="text" name="username" placeholder="username" required><br>
+                    <input type="password" name="password" placeholder="password" required><br>
+                    <button type="submit" name="submit">Submit</button>
+                </form>
+                
+                <p><?= $login_result?></p>
+                
+                <p>Belum punya akun? <a href="register.php">Sign up</a></p>
+            </div>
+        </div>
+    </section>
 
-        <p>Sign in</p>
-
-        <form action="index.php" method="POST">
-            <input type="text" name="username" placeholder="username" required><br>
-            <input type="password" name="password" placeholder="password" required><br>
-            <button type="submit" name="submit">Submit</button>
-        </form>
-
-        <p><?= $login_result?></p>
-
-        <p>Belum punya akun? <a href="register.php">Sign up</a></p>
-    </div>
+    <?=footer()?>
 </body>
 </html>

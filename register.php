@@ -1,6 +1,7 @@
 <?php
     include "services/database.php";
     include "services/function.php";
+    include "function/header.php";
     session_start();
 
     $regist_result = "";
@@ -70,23 +71,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assest/style.css">
     <title>Perpustakaan ts0ra</title>
 </head>
 <body>
-    <div>
-        <h1>Website Perpustakaan</h1>
-
-        <p>Sign up</p>
-        
-        <form action="register.php" method="POST">
-            <input type="text" name="username" placeholder="username" required><br>
-            <input type="password" name="password" placeholder="password" required><br>
-            <button type="submit" name="submit">Submit</button>
-        </form>
-
-        <p><?= $regist_result ?></p>
-
-        <p>Sudah punya akun? <a href="index.php">Sign in</a></p>
-    </div>
+    <?=navbar('')?>
+    <section>
+        <div class="container-head">
+            <div class="container">
+                <h1>Website Perpustakaan</h1>
+                
+                <p>Sign up</p>
+                
+                <form action="register.php" method="POST">
+                    <input type="text" name="username" placeholder="username" required><br>
+                    <input type="password" name="password" placeholder="password" required><br>
+                    <button type="submit" name="submit">Submit</button>
+                </form>
+                
+                <p><?= $regist_result ?></p>
+                
+                <p>Sudah punya akun? <a href="index.php">Sign in</a></p>
+            </div>
+        </div>
+    </section>
+    <?=footer()?>
 </body>
 </html>

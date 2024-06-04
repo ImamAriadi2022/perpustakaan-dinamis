@@ -1,6 +1,7 @@
 <?php
     include "services/database.php";
     include "services/function.php";
+    include "function/header.php";
     session_start();
 
     $username = $_SESSION['username'];
@@ -175,37 +176,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assest/style.css">
     <title>Perpustakaan ts0ra</title>
 </head>
 <body>
-    <h1>Selamat datang di &lt;ts0ra Library&gt;, <?= $username ?>!</h1>
-
-    <form action="dashboard.php" method="POST">
-        <button type="submit" name="daftar_buku_pinjaman">Daftar Pinjaman</button>
-        <button type="submit" name="daftar_buku">Daftar Buku</button>
-        <button type="submit" name="tambah_buku">Tambah Buku</button>
-        <button type="submit" name="logout">Logout</button>
-    </form>
-
+    <?=Navbar('')?>
+    <section class="dashboard">
+            <div class="container">
+                <h1>Selamat datang di &lt;ts0ra Library&gt;, <?= $username ?>!</h1>
+                
+                <form action="dashboard.php" method="POST">
+                    <button type="submit" name="daftar_buku_pinjaman">Daftar Pinjaman</button>
+                    <button type="submit" name="daftar_buku">Daftar Buku</button>
+                    <button type="submit" name="tambah_buku">Tambah Buku</button>
+                    <button type="submit" name="logout">Logout</button>
+                </form>
+            </div>
+    </section>
+        
+    
     <?php
         if (isset($_POST['daftar_buku_pinjaman']) || isset($_POST['return_button'])) {
             include "services/show_books.php";
-
+            
             echo "<p>$return_book_result</p>";
         }
-
+        
         if (isset($_POST['daftar_buku']) || isset($_POST['borrow_button']) || isset($_POST['delete_button'])) {
             include "services/show_all_books.php";
-
+            
             echo "<p>$borrow_book_result</p>";
             echo "<p>$delete_book_result</p>";
         }
-
+        
         if (isset($_POST['tambah_buku']) || isset($_POST['add_book'])) {
             include "layouts/tambah_buku.html";
-
+            
             echo "<p>$add_book_result</p>";
         }
-    ?>
+        ?>
+        <?=footer()?>
 </body>
 </html>
