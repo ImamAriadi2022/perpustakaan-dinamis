@@ -12,8 +12,13 @@
         <div id="chatlogs"></div>
         <input type="text" id="user-input" placeholder="Tanyakan sesuatu tentang lokasi, jam buka, hari libur, peraturan, atau fasilitas...">
         <button onclick="sendMessage()">Kirim</button>
+        <button onclick="backToMenu()">kembali ke menu utama</button>
     </div>
     <script>
+
+        function backToMenu() {
+            window.location.replace("http://127.0.0.1:5501/frontend/page/user/user.html");
+        }
         async function sendMessage() {
             const inputField = document.getElementById('user-input');
             console.log(inputField);
