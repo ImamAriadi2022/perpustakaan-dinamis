@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const signUpButton = document.getElementById('signUpButton');
   signUpButton.addEventListener('click', function() {
-    alert('databasenya belum di buat bang');// ini fungsi 
+    alert('databasenya belum di buat bang');// ini fungsi buat insert db nya
   });
 
   // Sign In
@@ -45,14 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Check credentials
     if (username === 'admin' && password === 'admin123') {
-      window.location.href = 'frontend/page/admin/admin.html'; // Redirect to admin page
+      window.location.href = 'frontend/page/admin/admin.html'; // menuju halaman admin
     } else if (username === 'user' && password === 'user123') {
-      window.location.href = 'frontend/page/user/user.html'; // Redirect to user page
+      window.location.href = 'frontend/page/user/user.html'; // menuju halaman user
     } else {
       alert('Username atau password salah');
     }
 
-    // Example integration with backend API
+    // backend integrasi API
     /*
     fetch('https://your-backend-api.com/login', {
       method: 'POST',
@@ -79,4 +79,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     */
   });
-}
+});

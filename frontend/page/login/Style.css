@@ -6,7 +6,7 @@
 }
 
 body {
-	background: #333333;
+	background-image: url(../img/background-login.jpg);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -46,8 +46,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #342801;
+	background-color: #342801;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
