@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     .password-container {
       position: relative;
@@ -25,6 +25,7 @@
 <body>
 
 <div class="container" id="container">
+  
   <div class="form-container sign-up-container">
     <form id="daftarForm" action="#">
       <h1>Membuat Akun</h1>
@@ -37,14 +38,15 @@
       <input type="text" placeholder="Nama" />
       <input type="email" placeholder="Email" />
       <div class="password-container">
-        <input type="password" placeholder="Password" id="signUpPassword" />
-        <i class="fas fa-eye password-toggle" id="toggleSignUpPassword"></i>
+        <input type="password" placeholder="Password" id="signUpPassword" autocomplete="on"/>
+        <i class="fas fa-eye-slash password-toggle" id="toggleSignUpPassword"></i>
       </div>
       <button type="button" id="signUpButton">Daftar</button>
     </form>
   </div>
+
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form action="#" id="masukForm">
       <h1>Masuk</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -52,15 +54,16 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>untuk 3 icon diatas hanya tampilan</span>
-      <input type="text" placeholder="Email" />
+      <input type="text" placeholder="Username" name="username"/>
       <div class="password-container">
-        <input type="password" placeholder="Password" id="signInPassword" />
-        <i class="fas fa-eye password-toggle" id="toggleSignInPassword"></i>
+        <input type="password" placeholder="Password" id="signInPassword" name="password" autocomplete="on"/>
+        <i class="fas fa-eye-slash password-toggle" id="toggleSignInPassword"></i>
       </div>
       <a href="#"></a>
       <button type="button" id="signInButton">Masuk</button>
     </form>
   </div>
+
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">
@@ -75,6 +78,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- JavaScript -->
