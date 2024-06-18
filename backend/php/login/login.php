@@ -1,24 +1,45 @@
 <?php
-session_start();
-header('Content-Type: application/json');
-require '../db.php';
+    session_start();
+    include '../db.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+    
+        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
 
-// Mendapatkan data dari request
-$email = $_POST['email'];
-$password = $_POST['password'];
+        $result = $db->query($query);
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['role_id'] = $row['role_id'];
+            
+            $response = [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Login success',
+                'data' => [
+                    'username' => $row['username'],
+                    'role_id' => $row['role_id']
+                ]
+            ];
 
-try {
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user'] = $user;
-        echo json_encode(['success' => true, 'role' => $user['role']]);
+            echo json_encode($response);
+        } else {
+            $response = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Login failed',
+            ];
+            http_response_code(401);
+            echo json_encode($response);
+        }
     } else {
-        echo json_encode(['success' => false, 'message' => 'Username atau password salah']);
+        $response = [
+            'code' => 405,
+            'status' => 'error',
+            'message' => 'Invalid request method',
+        ];
+        http_response_code(405);
+        echo json_encode($response);
     }
-} catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => 'Terjadi kesalahan pada server']);
-}
 ?>

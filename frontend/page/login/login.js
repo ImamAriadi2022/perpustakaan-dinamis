@@ -16,35 +16,20 @@ document.addEventListener('DOMContentLoaded', function() {
   function togglePasswordVisibility(inputField, eyeIcon) {
     const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
     inputField.setAttribute('type', type);
+    eyeIcon.classList.toggle('fa-eye');
     eyeIcon.classList.toggle('fa-eye-slash');
   }
 
-  // Sign Up
+  // =========================== Sign Up ===============================
+  // hide password typing function
   const toggleSignUpPassword = document.getElementById('toggleSignUpPassword');
   const signUpPassword = document.getElementById('signUpPassword');
   toggleSignUpPassword.addEventListener('click', function() {
     togglePasswordVisibility(signUpPassword, toggleSignUpPassword);
   });
 
-  // const signUpButton = document.getElementById('signUpButton');
-  // signUpButton.addEventListener('click', function() {
-  //   alert('databasenya belum di buat bang');// ini fungsi buat insert db nya
-  // });
-
-  // Sign In
-  const toggleSignInPassword = document.getElementById('toggleSignInPassword');
-  const signInPassword = document.getElementById('signInPassword');
-  toggleSignInPassword.addEventListener('click', function() {
-    togglePasswordVisibility(signInPassword, toggleSignInPassword);
-  });
-
-  const signInButton = document.getElementById('signInButton');
-  signInButton.addEventListener('click', function() {
-    const username = document.querySelector('.sign-in-container input[type="text"]').value;
-    const password = document.querySelector('.sign-in-container input[type="password"]').value;
-
-
-    const signUpButton = document.getElementById('signUpButton');
+  // sign up proccess
+  const signUpButton = document.getElementById('signUpButton');
     signUpButton.addEventListener('click', function() {
       const registerForm = document.getElementById('registerForm');
       const formData = new FormData(registerForm);
@@ -62,34 +47,57 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Terjadi kesalahan pada server');
       });
     });
-  
-    const signInButton = document.getElementById('signInButton');
-    signInButton.addEventListener('click', function() {
-      const loginForm = document.getElementById('daftarForm');
-      const formData = new FormData(loginForm);
-      
-      fetch('/backend/php/login/login.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          if (data.role === 'admin') {
-            window.location.href = 'frontend/page/admin/admin.html';
-          } else {
-            window.location.href = 'frontend/page/user/user.html';
-          }
-        } else {
-          alert('Username atau password salah');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan pada server');
-      });
-    });
 
+
+  // const signUpButton = document.getElementById('signUpButton');
+  // signUpButton.addEventListener('click', function() {
+  //   alert('databasenya belum di buat bang');// ini fungsi buat insert db nya
+  // });
+
+  // =========================== Sign In ===============================
+  // hide password typing function
+  const toggleSignInPassword = document.getElementById('toggleSignInPassword');
+  const signInPassword = document.getElementById('signInPassword');
+  toggleSignInPassword.addEventListener('click', function() {
+    togglePasswordVisibility(signInPassword, toggleSignInPassword);
+  });
+
+  // sign in proccess
+  const signInButton = document.getElementById('signInButton');
+  signInButton.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the form from submitting in the default way
+    
+    // eyes checking
+    const signInPassword = document.getElementById('signInPassword');
+    if (signInPassword.getAttribute('type') === 'text') {
+      alert('Tutup passwordmu dulu!');
+      return;
+    }
+  
+    const loginForm = document.getElementById('masukForm');
+    const formData = new FormData(loginForm);
+    
+    fetch('backend/php/login/login.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.code == 200) {
+        console.log(data.message);
+        if (data.data.role_id == 1) {
+          window.location.href = 'frontend/page/admin/admin.html';
+        } else {
+          window.location.href = 'frontend/page/user/user.html';
+        }
+      } else {
+        alert(data.message);
+        console.log(data.message);
+      };
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
 
   });
 });
