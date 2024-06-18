@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
     togglePasswordVisibility(signUpPassword, toggleSignUpPassword);
   });
 
-  const signUpButton = document.getElementById('signUpButton');
-  signUpButton.addEventListener('click', function() {
-    alert('databasenya belum di buat bang');// ini fungsi buat insert db nya
-  });
+  // const signUpButton = document.getElementById('signUpButton');
+  // signUpButton.addEventListener('click', function() {
+  //   alert('databasenya belum di buat bang');// ini fungsi buat insert db nya
+  // });
 
   // Sign In
   const toggleSignInPassword = document.getElementById('toggleSignInPassword');
@@ -43,40 +43,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const username = document.querySelector('.sign-in-container input[type="text"]').value;
     const password = document.querySelector('.sign-in-container input[type="password"]').value;
 
-    // Check credentials
-    if (username === 'admin' && password === 'admin123') {
-      window.location.href = 'frontend/page/admin/admin.html'; // menuju halaman admin
-    } else if (username === 'user' && password === 'user123') {
-      window.location.href = 'frontend/page/user/user.html'; // menuju halaman user
-    } else {
-      alert('Username atau password salah');
-    }
 
-    // backend integrasi API
-    /*
-    fetch('https://your-backend-api.com/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        if (data.role === 'admin') {
-          window.location.href = 'admin.html';
-        } else {
-          window.location.href = 'user.html';
-        }
-      } else {
-        alert('Username atau password salah');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Terjadi kesalahan pada server');
+    const signUpButton = document.getElementById('signUpButton');
+    signUpButton.addEventListener('click', function() {
+      const registerForm = document.getElementById('registerForm');
+      const formData = new FormData(registerForm);
+      
+      fetch('/backend/php/login/register.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan pada server');
+      });
     });
-    */
+  
+    const signInButton = document.getElementById('signInButton');
+    signInButton.addEventListener('click', function() {
+      const loginForm = document.getElementById('daftarForm');
+      const formData = new FormData(loginForm);
+      
+      fetch('/backend/php/login/login.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          if (data.role === 'admin') {
+            window.location.href = 'frontend/page/admin/admin.html';
+          } else {
+            window.location.href = 'frontend/page/user/user.html';
+          }
+        } else {
+          alert('Username atau password salah');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan pada server');
+      });
+    });
+
+
   });
 });
