@@ -64,5 +64,12 @@ $num_books = $pdo->query('SELECT COUNT(*) FROM books')->fetchColumn();
         <?php endif; ?>
     </div>
 </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <?=template_footer()?>

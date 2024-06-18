@@ -50,9 +50,14 @@ include 'function.php';
 <body>
   <section class="hero">
     <h1>WELLCOME ADMIN PERPUSTAKAAN</h1>
-    <img src="profil.png" alt="Foto Saya" class="profile-photo">
     <p>Nama Saya</p>
   </section>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 </body>
 </html>
 

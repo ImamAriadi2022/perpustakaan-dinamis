@@ -30,6 +30,8 @@ echo <<<EOT
     	<div>
     		<h1>Admin side</h1>
             <a href="/perpustakaan-ts0ra/frontend/page/admin/admin.php"><i class="fas fa-home"></i>Home</a>
+            <a href="/perpustakaan-ts0ra/frontend/page/admin/readUser.php"><i></i>Daftar User</a>
+            <a href="/perpustakaan-ts0ra"><i></i>Logout</a>
     		<a href="/perpustakaan-ts0ra/frontend/page/admin/read.php"><i class="fas fa-address-book"></i>Tambah Buku</a>
     	</div>
     </nav>
