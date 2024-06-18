@@ -1,19 +1,38 @@
 <?php
-require '../db.php';
+    include '../db.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+    
+        $query = "INSERT INTO users (username, password, role_id)
+                  VALUES ('$username', '$password', 2)";
 
-// Mendapatkan data dari request
-$username = $_POST['username'];
-$password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        try {
+            $db->query($query);
 
-try {
-    $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
-    $stmt->execute([$username, $password]);
-    echo 'Pendaftaran berhasil.';
-} catch (PDOException $e) {
-    if ($e->errorInfo[1] == 1062) {
-        echo 'Email sudah digunakan.';
+            $response = [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'Registrasi sukses, silahkan login'
+            ];
+
+            echo json_encode($response);
+        } catch (Exception $e) {
+            $response = [
+                'code' => 400,
+                'status' => 'error',
+                'message' => 'Failed to add user into database: ' . $e->getMessage(),
+            ];
+            echo json_encode($response);
+            die();
+        }
     } else {
-        echo 'Terjadi kesalahan pada server.';
+        $response = [
+            'code' => 405,
+            'status' => 'error',
+            'message' => 'Invalid request method',
+        ];
+        http_response_code(405);
+        echo json_encode($response);
     }
-}
 ?>
