@@ -20,8 +20,14 @@ CREATE TABLE books (
     author VARCHAR(255) NOT NULL,
     publisher VARCHAR(255),
     year INT,
-    image_url VARCHAR(255)  -- Kolom untuk URL gambar buku
+    image_url VARCHAR(255),  -- Kolom untuk URL gambar buku
+    --revisi image url drop kolom
+    foto LONGBLOB
 );
+
+ALTER TABLE books
+DROP COLUMN image_url;
+
 
 -- Tabel loans
 CREATE TABLE loans (

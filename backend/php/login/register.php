@@ -2,14 +2,12 @@
 require '../db.php';
 
 // Mendapatkan data dari request
-$name = $_POST['name'];
-$email = $_POST['email'];
+$username = $_POST['username'];
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-$role_id = '2'; // Default role for new users
 
 try {
-    $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?, ?)');
-    $stmt->execute([$username, $password, $role_id]);
+    $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+    $stmt->execute([$username, $password]);
     echo 'Pendaftaran berhasil.';
 } catch (PDOException $e) {
     if ($e->errorInfo[1] == 1062) {

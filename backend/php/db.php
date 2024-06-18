@@ -1,16 +1,13 @@
 <?php
-    $hostname = 'localhost';            // Sesuaikan dengan hostname kamu
-    $username = 'root';                 // Sesuaikan dengan password kamu
-    $password = '';                     // Sesuaikan dengan password database kamu
-    $database = 'perpustakaan_ts0ra1';  // Sesuaikan dengan nama database kamu
+$host = 'localhost';
+$dbname = 'perpustakaan_ts0ra';
+$username = 'root';  // Ganti dengan username database Anda
+$password = '';      // Ganti dengan password database Anda
 
-    $db = mysqli_connect($hostname, $username, $password, $database);
-
-    if ($db->connect_error)
-    {
-        echo "Failed to enstablish connection into database";
-        die();
-    }
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 ?>
-
-
