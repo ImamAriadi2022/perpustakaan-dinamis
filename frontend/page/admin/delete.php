@@ -2,24 +2,25 @@
 include 'function.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check that the contact ID exists
 if (isset($_GET['id'])) {
-    // Select the record that is going to be deleted
-    $stmt = $pdo->prepare('SELECT * FROM kontak WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM books WHERE book_id = ?');
     $stmt->execute([$_GET['id']]);
-    $contact = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$contact) {
-        exit('Contact doesn\'t exist with that ID!');
+    $book = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$book) {
+        exit('Book doesn\'t exist with that ID!');
     }
-    // Make sure the user confirms beore deletion
     if (isset($_GET['confirm'])) {
         if ($_GET['confirm'] == 'yes') {
-            // User clicked the "Yes" button, delete record
-            $stmt = $pdo->prepare('DELETE FROM kontak WHERE id = ?');
+            $filePath = __DIR__ . "/uploads/" . $book['foto'];
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            } else {
+                $msg = 'File not found!';
+            }
+            $stmt = $pdo->prepare('DELETE FROM books WHERE book_id = ?');
             $stmt->execute([$_GET['id']]);
-            $msg = 'You have deleted the contact!';
+            $msg = 'You have deleted the book!';
         } else {
-            // User clicked the "No" button, redirect them back to the read page
             header('Location: read.php');
             exit;
         }
@@ -29,32 +30,20 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
 <?=template_header('Delete')?>
 
 <div class="content delete">
-	<h2>Delete Contact #<?=$contact['id']?></h2>
+    <h2>Delete Book #<?=$book['book_id']?></h2>
     <?php if ($msg): ?>
     <p><?=$msg?></p>
     <?php else: ?>
-	<p>Are you sure you want to delete contact #<?=$contact['id']?>?</p>
+    <p>Are you sure you want to delete book #<?=$book['book_id']?>?</p>
     <div class="yesno">
-        <a href="delete.php?id=<?=$contact['id']?>&confirm=yes">Yes</a>
-        <a href="delete.php?id=<?=$contact['id']?>&confirm=no">No</a>
+        <a href="delete.php?id=<?=$book['book_id']?>&confirm=yes">Yes</a>
+        <a href="delete.php?id=<?=$book['book_id']?>&confirm=no">No</a>
     </div>
     <?php endif; ?>
-    <a href="read.php" class="back-button"
-    style="
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 20px;
-        background-color: #38b673;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-    "
-    >Back</a>
+    <a href="read.php" class="back-button">Back</a>
 </div>
 
 <?=template_footer()?>

@@ -24,12 +24,14 @@ echo <<<EOT
 	<body>
     <nav class="navtop"
 	style="
-	background-color: #333333;
+	background-color: #342801;
 	"
 	>
     	<div>
-    		<h1>Imam Web Crud</h1>
+    		<h1>Admin side</h1>
             <a href="/perpustakaan-ts0ra/frontend/page/admin/admin.php"><i class="fas fa-home"></i>Home</a>
+            <a href="/perpustakaan-ts0ra/frontend/page/admin/readUser.php"><i></i>Daftar User</a>
+            <a href="/perpustakaan-ts0ra"><i></i>Logout</a>
     		<a href="/perpustakaan-ts0ra/frontend/page/admin/read.php"><i class="fas fa-address-book"></i>Tambah Buku</a>
     	</div>
     </nav>
@@ -42,18 +44,17 @@ echo <<<EOT
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			position: fixed;
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			background-color: #333;
+			background-color: #342801;
 			color: white;
 			text-align: center;
 			padding: 10px 0;
 		">
 			<p style="
 			margin: 0;
-			">&copy; 2024 by Imam Ariadi</p>
+			">&copy; 2024 by Imam Ariadi & Muhammad Azka naufal</p>
 		</footer>
 	</body>
 EOT;
