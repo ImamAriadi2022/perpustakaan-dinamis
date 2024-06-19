@@ -35,4 +35,6 @@
         http_response_code(405);
         echo json_encode($response);
     }
+
+    $db->close();
 ?>

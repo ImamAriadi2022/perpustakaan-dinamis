@@ -4,40 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="user.css">
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#f0f5f9',
+                secondary : '#333333',
+                accent: '#FF8826',
+                accent_dark: '#B6611C',
+                accent_ring: '#894A16'
+              }
+            }
+          }
+        }
+      </script>
+    <title>Perpustakaan ts0ra</title>
 </head>
 <body>
-    <h1>hello user</h1>
-
-    <!-- ini adalah bagian bottom pintar -->
-    <button href="#" class="tombol">
-        <p>more</p>
-    </button>
     
-    <button href="#" class="tombol1 animate-bottom">
-        <p>Azka</p>
-    </button>
-    <button href="#" class="tombol2 animate-bottom">
-        <p>Imam</p>
-    </button>
-    <button href="#" class="tombol3 animate-bottom">
-        <p>Chatbot</p>
-    </button>
-    <!-- ini adalah bagian bottom pintar -->
+    <div class="flex flex-col min-h-screen">
 
-    <!-- bagian labelnya -->
-     <button class="admin1">
-        <p>Admin pertama</p>
-     </button>
-     <button class="admin2">
-        <p>Admin kedua</p>
-     </button>
-     <button class="AI">
-        <p>Virtual asisten</p>
-     </button>
-    <!-- bagian labelnya -->
-    
+        <!-- Navbar -->
+        <div class="w-screen h-14 bg-secondary flex justify-between items-center">
+            <!-- Selamat datang -->
+            <h1 class="h-full p-5 text-2xl font-medium text-neutral-50 flex items-center text-center">
+                Perpustakaan&nbsp<a class="text-accent">ts0ra</a>!
+            </h1>
+        
+            <!-- Menu -->
+            <div class="h-full w-[40rem] p-5 flex items-center text-base font-medium text-center justify-between">
+                <button id="beranda-btn" class="w-28 h-10 bg-accent rounded-lg hover:bg-accent_dark active:bg-accent focus:bg-accent_dark focus:outline-none focus:ring focus:ring-accent_ring focus:text-neutral-50">Beranda</button>
+                <button id="buku-saya-btn" class="w-28 h-10 bg-accent rounded-lg hover:bg-accent_dark active:bg-accent focus:bg-accent_dark focus:outline-none focus:ring focus:ring-accent_ring focus:text-neutral-50">Buku Saya</button>
+                <button id="koleksi-buku-btn" class="w-28 h-10 bg-accent rounded-lg hover:bg-accent_dark active:bg-accent focus:bg-accent_dark focus:outline-none focus:ring focus:ring-accent_ring focus:text-neutral-50">Koleksi Buku</button>
+                <button id="chatbot-btn" class="w-28 h-10 bg-accent rounded-lg hover:bg-accent_dark active:bg-accent focus:bg-accent_dark focus:outline-none focus:ring focus:ring-accent_ring focus:text-neutral-50">ChatBot</button>
+                <button id="logout-btn" class="w-28 h-10 bg-accent rounded-lg hover:bg-accent_dark active:bg-accent focus:bg-accent_dark focus:outline-none focus:ring focus:ring-accent_ring focus:text-neutral-50">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="flex-grow p-5">
+            <div>
+                <h1 class="text-2xl font-medium text-center">Selamat datang <a id="username" class="text-accent bg-black px-2"></a> di Perpustakaan ts0ra!</h1>
+                <p class="text-center">Silahkan pilih menu yang tersedia di atas.</p>
+
+                <hr class="m-5 border-2 border-secondary">
+
+                <div class="user-reviews m-5">
+                    <h3 class="text-2xl font-semibold mb-3">Komentar Pengguna</h3>
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Aplikasi perpustakaan online ini sangat membantu saya dalam mengakses buku kapan saja dan di mana saja. Koleksi bukunya sangat lengkap!"</p>
+                        <p class="text-xs text-right">- Siti Rahmawati</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Sistem pencarian buku di aplikasi ini sangat cepat dan akurat. Saya selalu menemukan buku yang saya cari dengan mudah."</p>
+                        <p class="text-xs text-right">- Ahmad Fauzi</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Antarmuka yang sederhana dan mudah digunakan membuat aplikasi ini menjadi favorit saya untuk mencari referensi bacaan."</p>
+                        <p class="text-xs text-right">- Maria Yuliana</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Koleksi buku yang sangat beragam dan selalu update. Saya senang sekali menggunakan aplikasi ini."</p>
+                        <p class="text-xs text-right">- Dedi Irawan</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Aplikasi ini mempermudah saya mengakses berbagai buku dari berbagai genre tanpa perlu pergi ke perpustakaan."</p>
+                        <p class="text-xs text-right">- Lisa Febrianti</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Pelayanan pelanggan yang cepat dan responsif. Saya sangat puas dengan layanan aplikasi perpustakaan ini."</p>
+                        <p class="text-xs text-right">- Bambang Sutrisno</p>
+                    </div>
+                    
+                    <div class="review bg-white p-4 rounded-lg shadow mb-4">
+                        <p class="text-base">"Aplikasi ini sangat membantu dalam mencari literatur untuk tugas-tugas kuliah saya. Sangat recommended!"</p>
+                        <p class="text-xs text-right">- Rina Kurniawati</p>
+                    </div>               
+                </div>
+            </div>
+        </div>
+        <p id="result-tag" class="text-center m-10 text-lg font-medium" hidden></p>
+    </div>
 
     <script src="user.js"></script>
+
 </body>
 </html>

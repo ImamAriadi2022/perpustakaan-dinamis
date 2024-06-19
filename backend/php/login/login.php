@@ -12,6 +12,7 @@
             $row = $result->fetch_assoc();
             $_SESSION['username'] = $row['username'];
             $_SESSION['role_id'] = $row['role_id'];
+            $_SESSION['user_id'] = $row['user_id'];
             
             $response = [
                 'code' => 200,
@@ -19,7 +20,8 @@
                 'message' => 'Login success',
                 'data' => [
                     'username' => $row['username'],
-                    'role_id' => $row['role_id']
+                    'role_id' => $row['role_id'],
+                    'user_id' => $row['user_id']
                 ]
             ];
 
@@ -42,4 +44,6 @@
         http_response_code(405);
         echo json_encode($response);
     }
+
+    $db->close();
 ?>
